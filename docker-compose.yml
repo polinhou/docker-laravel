@@ -1,0 +1,17 @@
+version: '3'
+services:
+  laravel:
+    privileged: true
+    image: laravel
+    build:
+      context: .
+      dockerfile: docker/Dockerfile
+    network_mode: "bridge"
+    ports:
+      - "8888:80"
+    volumes:
+     - ./:/home/project
+    environment:
+     - FPM_PM_MAX_CHILDREN=10
+     - FPM_PM_MAX_REQUESTS=10
+     - FPM_PM_SLOWLOG_TIMEOUT=5
